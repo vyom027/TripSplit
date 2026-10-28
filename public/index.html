@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TripSplit — Join Trip</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #0b0f19;
+      color: #f1f5f9;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 24px;
+      box-sizing: border-box;
+    }
+
+    .card {
+      background: #151d2f;
+      border: 1px solid #23314e;
+      border-radius: 20px;
+      padding: 32px 24px;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .logo {
+      font-size: 40px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 24px;
+      font-weight: 800;
+      margin: 0 0 8px 0;
+      color: #ffffff;
+      letter-spacing: -0.5px;
+    }
+
+    p {
+      font-size: 14px;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin: 0 0 24px 0;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #bef264;
+      color: #0b0f19;
+      font-weight: 700;
+      font-size: 15px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      text-decoration: none;
+      transition: transform 0.1s ease;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .hint {
+      margin-top: 16px;
+      font-size: 12px;
+      color: #64748b;
+    }
+  </style>
+  <script>
+    window.addEventListener('DOMContentLoaded', function () {
+      var path = window.location.pathname;
+      var match = path.match(/\/(join-trip|invite|join|j)\/([a-zA-Z0-9_-]+)/);
+      if (match && match[2]) {
+        var token = match[2];
+        var appSchemeUrl = "tripsplit://join-trip/" + token;
+        var androidIntentUrl = "intent://join-trip/" + token + "#Intent;scheme=tripsplit;package=com.ljku.tripsplit;end;";
+
+        // Update direct button
+        var btn = document.getElementById("open-btn");
+        if (btn) btn.href = appSchemeUrl;
+
+        // Try direct intent bounce if on Android
+        if (/android/i.test(navigator.userAgent)) {
+          window.location.href = androidIntentUrl;
+        }
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <div class="card">
+    <div class="logo">✈️</div>
+    <h1>TripSplit</h1>
+    <p>You have been invited to join an expedition on TripSplit.</p>
+    <a id="open-btn" class="btn" href="tripsplit://join-trip">Open in TripSplit</a>
+    <div class="hint">Ensure TripSplit is installed on your Android device.</div>
+  </div>
+</body>
+
+</html>

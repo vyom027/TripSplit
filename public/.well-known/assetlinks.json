@@ -1,0 +1,14 @@
+[
+  {
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.ljku.tripsplit",
+      "sha256_cert_fingerprints": [
+        "98:59:3D:2F:E4:64:12:32:E0:C5:41:01:72:97:C0:20:D2:6E:9D:64:AC:FD:5A:21:CD:A2:B1:3B:8B:05:97:E2"
+      ]
+    }
+  }
+]
